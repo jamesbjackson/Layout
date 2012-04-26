@@ -1,0 +1,4 @@
+-swf9 layout.swf
+-main Main
+-cp src
+-swf-header 1024:768:200:00FFFF

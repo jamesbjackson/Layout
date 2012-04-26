@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <Data>
+   	
+   	<!--This container is used to contain all dynamicly created content -->
+   		<MovieClip id="container" ns="flash.display" x="20"  y="0">
+   	
+   			<!-- This contains the textural instructions -->
+   				<TextField id="instructions" ns="flash.text" x="110" y="120" border="false" multiline="true" autoSize="left">
+   					<String id="htmlText"><![CDATA[<FONT SIZE="20">Fun with Dynamic <BR/><BR/>Layout<FONT>]]></String>
+   				</TextField>
+   	
+   			<!-- We then define the static/freeflow objects which will appear in the world -->
+   				<Array id="physicObjects">
+
+   					<!--We define the walls, floor and ceiling of the physic world-->
+   						<Dynamic type="box" static="true" x="0" y="690" width="800" height="10"/>
+   						<Dynamic type="box" static="true" x="0" y="0" width="10" height="690"/>
+   							
+   					<!--We then finally define the freeflow objects -->
+   						<Dynamic type="box" static="false" x="30" y="0" width="10" height="10"/>
+   						<Dynamic type="box" static="false" x="260" y="0" width="10" height="10"/>
+   						<Dynamic type="polygon" static="false" x="300" y="30" sides="5" radius="50" rotation="50"/>
+   						<Dynamic type="box" static="false" x="678" y="0" width="20" height="30"/>
+   						<Dynamic type="polygon" static="false" x="302" y="30" sides="5" radius="50" rotation="20"/>
+   						<Dynamic type="box" static="false" x="120" y="0" width="20" height="30"/>
+   						<Dynamic type="polygon" static="false" x="304" y="30" sides="5" radius="50" rotation="60"/>
+   						<Dynamic type="box" static="false" x="234" y="0" width="20" height="30"/>
+   				
+   				</Array>
+
+			<!--We finally create the instance of the physic world and we set the gravity of the world -->
+				<PhysicWorld id="myWorld" ns="" x="20"  y="0" steps="3" dt="1">
+   					<Script><![CDATA[ this.world.gravity.set(0, 0.1); ]]></Script>
+   					<Script><![CDATA[ this.addConvexPolygon(false, 100, 100, 5, 50, 90); ]]></Script>
+				</PhysicWorld>		
+	
+			 <!--We finally process the physic object's into our world -->
+				<Script><![CDATA[ 
+					var physicWorld = this.getChildByName("myWorld");
+					for(shape in this.physicObjects){
+						if(shape.type == "box"){ 
+							physicWorld.addBox(shape.static, shape.x, shape.y, shape.width, shape.height); 
+						}else if(shape.type == "polygon"){ 
+							physicWorld.addConvexPolygon(shape.static, shape.x, shape.y, shape.sides, shape.radius, shape.rotation);
+						}
+					}	
+			 	]]></Script>	
+			 	
+		</MovieClip>	 	
+</Data>
