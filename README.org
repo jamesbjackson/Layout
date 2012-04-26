@@ -1,4 +1,6 @@
-*** Realtime Layout Engine in HaXe (Experimental)
+*** XML Data Structure / Layout Engine in HaXe (Experimental)
+
+You can build complex custom data structures in xml and convert them into HaXe Objects and also run script from within the XML to affect the layout on the fly.
 
 Licensed Under MIT 
 
